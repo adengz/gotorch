@@ -35,13 +35,17 @@ func GELU() *scalarActivation {
 	return &scalarActivation{f: gelu}
 }
 
-type SoftMax struct{}
+type softmax struct{}
 
-func (sm SoftMax) Forward(x *mat.Dense) *mat.Dense {
+func (s softmax) Forward(x *mat.Dense) *mat.Dense {
 	x.Apply(func(_, _ int, v float64) float64 {
 		return math.Exp(v)
 	}, x)
 	sum := mat.Sum(x)
 	x.Scale(1/sum, x)
 	return x
+}
+
+func Softmax() *softmax {
+	return &softmax{}
 }

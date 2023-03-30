@@ -18,7 +18,7 @@ func (l *linear) Forward(x *mat.Dense) *mat.Dense {
 	return y
 }
 
-func NewLinear(weight, bias *mat.Dense) *linear {
+func Linear(weight, bias *mat.Dense) *linear {
 	if weight == nil {
 		panic("nil weight")
 	}
